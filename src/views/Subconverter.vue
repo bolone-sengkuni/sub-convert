@@ -9,32 +9,32 @@
           <svg-icon class="bilibili" icon-class="bilibili" style="float:right;margin-left:10px" @click="gotoBiliBili" />
           <svg-icon class="youguan" icon-class="youtube" style="float:right;margin-left:10px" @click="gotoYouTuBe" />
           <svg-icon class="channel" icon-class="telegram" style="float:right;margin-left: 10px" @click="gotoTgChannel" />
-          <div style="text-align:center;font-size:15px">订 阅 转 换</div>
+          <div style="text-align:center;font-size:15px">Konversi Berlangganan</div>
           </div>
-          
+
           <el-container>
             <el-form :model="form" label-width="80px" label-position="left" style="width: 100%">
-              <el-form-item label="订阅链接:">
+              <el-form-item label="Tautan berlangganan:">
                 <el-input
                   v-model="form.sourceSubUrl"
                   type="textarea"
                   rows="3"
-                  placeholder="支持各种订阅链接或单节点链接，多个链接每行一个或用 | 分隔"
+                  placeholder="Mendukung berbagai tautan berlangganan atau tautan simpul tunggal, banyak tautan satu per baris atau dipisahkan oleh |"
                 />
               </el-form-item>
-              <el-form-item label="生成类型:">
+              <el-form-item label="Tipe Bangun:">
                 <el-select v-model="form.clientType" style="width: 100%">
                   <el-option v-for="(v, k) in options.clientTypes" :key="k" :label="k" :value="v"></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="后端地址:">
+              <el-form-item label="Alamat backend:">
 
               <el-select
                   v-model="form.customBackend"
                   allow-create
                   filterable
                   @change="selectChanged"
-                  placeholder="可输入自己的后端"
+                  placeholder="Anda dapat memasukkan backend Anda sendiri"
                   style="width: 100%"
                 >
                   <el-option v-for="(v, k) in options.customBackend" :key="k" :label="k" :value="v"></el-option>
@@ -42,23 +42,23 @@
                 </el-select>
 
               </el-form-item>
-              <el-form-item label="短链选择:">
-                <el-select 
-                  v-model="form.shortType" 
+              <el-form-item label="Opsi rantai pendek:">
+                <el-select
+                  v-model="form.shortType"
                   allow-create
                   filterable
-                  placeholder="可输入其他可用短链API"
+                  placeholder="API rantai pendek lain yang tersedia dapat dimasukkan"
                   style="width: 100%"
                 >
                   <el-option v-for="(v, k) in options.shortTypes" :key="k" :label="k" :value="v"></el-option>
                 </el-select>
               </el-form-item>
-                <el-form-item label="远程配置:">
+                <el-form-item label="Konfigurasi jarak jauh:">
                   <el-select
                     v-model="form.remoteConfig"
                     allow-create
                     filterable
-                    placeholder="请选择"
+                    placeholder="tolong pilih"
                     style="width: 100%"
                   >
                     <el-option-group
@@ -73,37 +73,37 @@
                         :value="item.value"
                       ></el-option>
                     </el-option-group>
-                    <el-button slot="append" @click="gotoRemoteConfig" icon="el-icon-link">配置示例</el-button>
+                    <el-button slot="append" @click="gotoRemoteConfig" icon="el-icon-link">Contoh konfigurasi</el-button>
                   </el-select>
                 </el-form-item>
                 <el-form-item label-width="0px">
                  <el-collapse>
                     <el-collapse-item>
                     <template slot="title">
-                    <el-form-item label="高级功能:" style="width: 100%;">
+                    <el-form-item label="Fitur lanjutan:" style="width: 100%;">
                      <el-button
                       type="limr"
                       style="width: 100%;"
                       icon="el-icon-more-outline"
-                     >点击显示/隐藏</el-button>
-                    </el-form-item>    
+                     >Klik untuk menampilkan/menyembunyikan</el-button>
+                    </el-form-item>
                     </template>
-                    <el-form-item label="包含节点:">
-                    <el-input v-model="form.includeRemarks" placeholder="要保留的节点，支持正则" />
+                    <el-form-item label="Berisi node:">
+                    <el-input v-model="form.includeRemarks" placeholder="Node untuk disimpan, dukung secara teratur" />
                     </el-form-item>
                     <el-form-item label="排除节点:">
-                    <el-input v-model="form.excludeRemarks" placeholder="要排除的节点，支持正则" />
+                    <el-input v-model="form.excludeRemarks" placeholder="Node yang akan dikecualikan, dukung reguler" />
                     </el-form-item>
 					<el-form-item label="节点命名:">
-					<el-input v-model="form.rename" placeholder="举例：`a@b``1@2`，|符可用\转义" />
+					<el-input v-model="form.rename" placeholder="举例：`a@b``1@2`，|karakter dapat diloloskan dengan \" />
 					</el-form-item>
 					<el-form-item label="订阅命名:">
-                    <el-input v-model="form.filename" placeholder="返回的订阅文件名" />
+                    <el-input v-model="form.filename" placeholder="Nama file langganan yang dikembalikan" />
                     </el-form-item>
                 <el-form-item class="eldiy" label-width="0px">
                   <el-row type="flex">
                     <el-col>
-                      <el-checkbox v-model="form.nodeList" label="仅输出节点信息" border></el-checkbox>
+                      <el-checkbox v-model="form.nodeList" label="Hanya keluaran informasi simpul" border></el-checkbox>
                     </el-col>
                       <el-popover placement="bottom" v-model="form.extraset">
                       <el-row :gutter="10">
@@ -112,15 +112,15 @@
                       </el-row>
                       <el-row :gutter="10">
                         <el-col :span="12"><el-checkbox v-model="form.udp" label="启用 UDP"></el-checkbox></el-col>
-                        <el-col :span="12"><el-checkbox v-model="form.sort" label="排序节点"></el-checkbox></el-col>          
-                      </el-row>    
+                        <el-col :span="12"><el-checkbox v-model="form.sort" label="排序节点"></el-checkbox></el-col>
+                      </el-row>
                       <el-row :gutter="10">
                         <el-col :span="12"><el-checkbox v-model="form.tfo" label="启用 TFO"></el-checkbox></el-col>
                         <el-col :span="12"><el-checkbox v-model="form.tpl.surge.doh" label="Surge.DoH"></el-checkbox></el-col>
                       </el-row>
                       <el-row :gutter="10">
                         <el-col :span="12"><el-checkbox v-model="form.appendType" label="插入节点类型"></el-checkbox></el-col>
-                        <el-col :span="12"><el-checkbox v-model="form.tpl.clash.doh" label="Clash.DoH"></el-checkbox></el-col>                        
+                        <el-col :span="12"><el-checkbox v-model="form.tpl.clash.doh" label="Clash.DoH"></el-checkbox></el-col>
                       </el-row>
                       <el-row :gutter="10">
                         <el-col :span="12"><el-checkbox v-model="form.expand" label="展开规则全文"></el-checkbox></el-col>
@@ -133,7 +133,7 @@
                       <el-button slot="reference">更多选项</el-button>
                     </el-popover>
                   </el-row>
-                </el-form-item>    
+                </el-form-item>
                 </el-collapse-item>
                 </el-collapse>
                 </el-form-item>
@@ -141,11 +141,11 @@
               <div style="margin-top: 30px"></div>
 
               <el-divider content-position="center">
-                <el-button 
+                <el-button
                  type="zhuti"
                  @click="change">
-                 <i id="rijian" class="el-icon-sunny" ></i>  
-                 <i id="yejian" class="el-icon-moon" ></i>    
+                 <i id="rijian" class="el-icon-sunny" ></i>
+                 <i id="yejian" class="el-icon-moon" ></i>
                  </el-button>
               </el-divider>
 
@@ -273,7 +273,7 @@ const configUploadBackend = process.env.VUE_APP_CONFIG_UPLOAD_BACKEND
 const tgBotLink = process.env.VUE_APP_BOT_LINK
 const yglink = process.env.VUE_APP_YOUTUBE_LINK
 const bzlink = process.env.VUE_APP_BILIBILI_LINK
-const downld = process.env.VUE_APP_CFA 
+const downld = process.env.VUE_APP_CFA
 const bmvideo = process.env.VUE_APP_VIDEO
 
 export default {
@@ -439,7 +439,7 @@ export default {
               {
                 label: "分区域无自动测速",
                 value: "https://raw.githubusercontent.com/flyhigherpi/merlinclash_clash_related/master/Rule_config/ZHANG_Area_NoAuto.ini"
-              }, 
+              },
               {
                 label: "OoHHHHHHH",
                 value: "https://raw.githubusercontent.com/OoHHHHHHH/ini/master/config.ini"
@@ -617,7 +617,7 @@ export default {
               {
                 label: "咸鱼",
                 value: "https://raw.githubusercontent.com/SleepyHeeead/subconverter-config/master/remote-config/customized/xianyu.ini"
-              },    
+              },
               {
                 label: "便利店",
                 value: "https://subweb.oss-cn-hongkong.aliyuncs.com/RemoteConfig/customized/convenience.ini"
@@ -625,7 +625,7 @@ export default {
               {
                 label: "CNIX",
                 value: "https://raw.githubusercontent.com/Mazeorz/airports/master/Clash/SSRcloud.ini"
-              },    
+              },
               {
                 label: "Nirvana",
                 value: "https://raw.githubusercontent.com/Mazetsz/ACL4SSR/master/Clash/config/V2rayPro.ini"
@@ -641,7 +641,7 @@ export default {
               {
                 label: "史迪仔-负载均衡",
                 value: "https://raw.githubusercontent.com/Mazeorz/airports/master/Clash/Stitch-Balance.ini"
-              },    
+              },
               {
                 label: "Maying",
                 value: "https://raw.githubusercontent.com/SleepyHeeead/subconverter-config/master/remote-config/customized/maying.ini"
@@ -771,26 +771,26 @@ export default {
     },
     anhei() {
       const getLocalTheme = window.localStorage.getItem("localTheme");
-      const lightMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)'); 
-      const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)'); 
+      const lightMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
+      const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
       if (getLocalTheme) {
         document.getElementsByTagName('body')[0].className = getLocalTheme;
       } //读取localstorage，优先级最高！
       else if (getLocalTheme == null || getLocalTheme == "undefined" || getLocalTheme == "") {
       if (new Date().getHours() >= 19 || new Date().getHours() < 7) {
-        document.getElementsByTagName('body')[0].setAttribute('class', 'dark-mode');  
-      } 
+        document.getElementsByTagName('body')[0].setAttribute('class', 'dark-mode');
+      }
       else {
-        document.getElementsByTagName('body')[0].setAttribute('class', 'light-mode');  
-      } //根据当前时间来判断，用来对付QQ等不支持媒体变量查询的浏览器
-      if (lightMode && lightMode.matches) { 
         document.getElementsByTagName('body')[0].setAttribute('class', 'light-mode');
-      } 
-      if (darkMode && darkMode.matches) { 
+      } //根据当前时间来判断，用来对付QQ等不支持媒体变量查询的浏览器
+      if (lightMode && lightMode.matches) {
+        document.getElementsByTagName('body')[0].setAttribute('class', 'light-mode');
+      }
+      if (darkMode && darkMode.matches) {
         document.getElementsByTagName('body')[0].setAttribute('class', 'dark-mode');
       } //根据窗口主题来判断当前主题！
-     }  
-    },  
+     }
+    },
     change() {
       var zhuti = document.getElementsByTagName('body')[0].className;
       if (zhuti === 'light-mode'){
@@ -822,10 +822,10 @@ export default {
       window.open(gayhubRelease);
     },
 	gotoBiliBili() {
-      window.open(bzlink);    
+      window.open(bzlink);
     },
     gotoYouTuBe() {
-      window.open(yglink);    
+      window.open(yglink);
     },
     cldown() {
       window.open(downld);
@@ -964,12 +964,12 @@ export default {
         this.$message.warning("请先生成订阅链接，再获取对应短链接");
         return false;
       }
-      
+
       let duan =
         this.form.shortType === ""
           ? shortUrlBackend
           : this.form.shortType;
-      
+
       this.loading = true;
 
       let data = new FormData();
